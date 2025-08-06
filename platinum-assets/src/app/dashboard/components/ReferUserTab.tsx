@@ -141,7 +141,7 @@ const ReferUserTab: React.FC<ReferUserTabProps> = ({ refLink }) => {
         </div>
 
         {/* Native Share Button (for mobile devices) */}
-        {typeof navigator !== 'undefined' && navigator.share && (
+        {typeof navigator !== 'undefined' && 'share' in navigator && (
           <button
             onClick={handleNativeShare}
             className="bg-gradient-to-r from-[#3772ff] to-[#6c2bd7] text-white p-4 rounded-lg flex items-center justify-center gap-2 hover:from-[#6c2bd7] hover:to-[#3772ff] transition-all duration-200"

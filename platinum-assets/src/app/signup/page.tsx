@@ -32,11 +32,11 @@ const SignupPage = () => {
       .catch(() => {});
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -49,13 +49,6 @@ const SignupPage = () => {
       return;
     }
     setLoading(true);
-    // Set session persistence to 30 days
-    await supabase.auth.setSession({
-      access_token: "",
-      refresh_token: "",
-      expires_in: 2592000, // 30 days in seconds
-      token_type: "bearer"
-    });
     // Sign up with Supabase
     const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
       email: form.email,
