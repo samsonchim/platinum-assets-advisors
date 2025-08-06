@@ -53,28 +53,28 @@ export default function Header() {
         <div className="md:hidden flex items-center">
           <details className="relative">
             <summary className="list-none cursor-pointer text-white text-lg font-semibold px-2 py-1 rounded hover:bg-[#23272f]">MENU</summary>
-            <ul className="absolute right-0 mt-2 w-48 bg-[#23272f] border border-[#23272f] rounded shadow-lg py-2 z-50">
-              <li><a href="#" className="block px-4 py-2 hover:bg-[#181a20] text-white">HOME</a></li>
-              <li><a href="#about" className="block px-4 py-2 hover:bg-[#181a20] text-white">ABOUT</a></li>
+            <ul className="absolute right-0 mt-2 w-56 bg-[#23272f] border border-[#3772ff]/20 rounded-lg shadow-xl py-2 z-50 min-w-max">
+              <li><a href="#" className="block px-4 py-2 hover:bg-[#181a20] text-white text-sm">HOME</a></li>
+              <li><a href="#about" className="block px-4 py-2 hover:bg-[#181a20] text-white text-sm">ABOUT</a></li>
               <li className="relative group">
                 <details>
-                  <summary className="block px-4 py-2 hover:bg-[#181a20] text-white cursor-pointer">SERVICES</summary>
-                  <ul className="ml-4 mt-1">
-                    <li><a href="#crypto" className="block px-4 py-2 hover:bg-[#181a20] text-white">Crypto Trading</a></li>
-                    <li><a href="#forex" className="block px-4 py-2 hover:bg-[#181a20] text-white">Forex Trading</a></li>
-                    <li><a href="#stocks" className="block px-4 py-2 hover:bg-[#181a20] text-white">Stock Trading</a></li>
-                    <li><a href="#options" className="block px-4 py-2 hover:bg-[#181a20] text-white">Option Copy Trading</a></li>
+                  <summary className="block px-4 py-2 hover:bg-[#181a20] text-white cursor-pointer text-sm">SERVICES</summary>
+                  <ul className="ml-4 mt-1 border-l border-[#3772ff]/20 pl-2">
+                    <li><a href="#crypto" className="block px-3 py-1 hover:bg-[#181a20] text-white text-xs">Crypto Trading</a></li>
+                    <li><a href="#forex" className="block px-3 py-1 hover:bg-[#181a20] text-white text-xs">Forex Trading</a></li>
+                    <li><a href="#stocks" className="block px-3 py-1 hover:bg-[#181a20] text-white text-xs">Stock Trading</a></li>
+                    <li><a href="#options" className="block px-3 py-1 hover:bg-[#181a20] text-white text-xs">Option Copy Trading</a></li>
                   </ul>
                 </details>
               </li>
-              <li><a href="#faq" className="block px-4 py-2 hover:bg-[#181a20] text-white">FAQ</a></li>
-              <li><a href="#contact" className="block px-4 py-2 hover:bg-[#181a20] text-white">CONTACT</a></li>
+              <li><a href="#faq" className="block px-4 py-2 hover:bg-[#181a20] text-white text-sm">FAQ</a></li>
+              <li><a href="#contact" className="block px-4 py-2 hover:bg-[#181a20] text-white text-sm">CONTACT</a></li>
             </ul>
           </details>
         </div>
         <a
-          href="#get-started"
-          className="ml-4 px-7 py-2.5 bg-white text-[#181a20] font-medium text-lg shadow border border-gray-200 rounded-[18px_18px_18px_6px] hover:bg-gray-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#3772ff] focus:ring-offset-2 flex items-center gap-2"
+          href="/login"
+          className="ml-4 px-4 sm:px-7 py-2 sm:py-2.5 bg-white text-[#181a20] font-medium text-sm sm:text-lg shadow border border-gray-200 rounded-[18px_18px_18px_6px] hover:bg-gray-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#3772ff] focus:ring-offset-2 flex items-center gap-2"
           style={{ borderRadius: '18px 18px 18px 6px' }}
         >
           Login

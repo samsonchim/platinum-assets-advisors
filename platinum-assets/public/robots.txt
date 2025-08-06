@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://platinumassetadvisors.com/sitemap.xml
+
+# Disallow crawling of specific paths if needed
+# Disallow: /api/
+# Disallow: /admin/
+
+# Allow all major search engine bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Crawl delay (optional)
+Crawl-delay: 1
