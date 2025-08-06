@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -21,6 +22,7 @@ const SignupPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const router = useRouter();
 
   React.useEffect(() => {
     // Get country from IP
@@ -47,8 +49,15 @@ const SignupPage = () => {
       return;
     }
     setLoading(true);
+    // Set session persistence to 30 days
+    await supabase.auth.setSession({
+      access_token: "",
+      refresh_token: "",
+      expires_in: 2592000, // 30 days in seconds
+      token_type: "bearer"
+    });
     // Sign up with Supabase
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
       options: {
@@ -61,12 +70,24 @@ const SignupPage = () => {
         emailRedirectTo: undefined,
       },
     });
+    if (!signUpError && signUpData.user) {
+      // Create profile row in DB
+      await supabase.from('profiles').insert({
+        id: signUpData.user.id,
+        name: form.name,
+        username: form.username,
+        referral: form.referral,
+        country: form.country,
+      });
+    }
     setLoading(false);
     if (signUpError) {
       setError(signUpError.message);
     } else {
-      setSuccess("Signup successful! You can now log in.");
-      setForm(initialState);
+      setSuccess("Signup successful! Redirecting to login...");
+      setTimeout(() => {
+        router.push("/login");
+      }, 1000);
     }
   };
 
@@ -119,6 +140,9 @@ const SignupPage = () => {
         >
           {loading ? "Signing Up..." : "Sign Up"}
         </button>
+        <div className="text-gray-400 text-center text-sm mt-2">
+          Already have an account? <a href="/login" className="text-[#3772ff] hover:underline">Login</a>
+        </div>
       </form>
     </div>
   );
