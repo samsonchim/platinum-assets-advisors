@@ -2,7 +2,6 @@
 
 
 
-import Image from "next/image";
 import "./globals-animations.css";
 
 import Header from "./Header";
@@ -51,7 +50,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-4 sm:mt-6 text-center animate-fade-in-up-delay-3">
-          <span className="text-sm sm:text-base md:text-lg text-gray-200">Go further than you've ever gone before</span>
+          <span className="text-sm sm:text-base md:text-lg text-gray-200">Go further than you&apos;ve ever gone before</span>
         </div>
       </main>
 

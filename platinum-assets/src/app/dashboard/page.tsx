@@ -129,7 +129,7 @@ const DashboardPage = () => {
       });
       // Simulate profit climbing
       let base = 10000;
-      let profit = ((candles[19].c - candles[entryIdx].c) / candles[entryIdx].c) * base;
+      const profit = ((candles[19].c - candles[entryIdx].c) / candles[entryIdx].c) * base;
       setProfit(profit);
       let p = profit;
       const interval = setInterval(() => {
