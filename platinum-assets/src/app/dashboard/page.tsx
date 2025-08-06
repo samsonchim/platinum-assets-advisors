@@ -1,9 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
+
+type ManualReceiptUploadProps = {
+  depositAmount: string;
+  depositMethod: keyof typeof DEPOSIT_ADDRESSES;
+  profile: any;
+  onSuccess: () => void;
+  onCancel: () => void;
+};
+
+
 // ManualReceiptUpload component for uploading payment receipt (mocked, no upload to Supabase)
-function ManualReceiptUpload({ depositAmount, depositMethod, profile, onSuccess, onCancel }) {
-  const [file, setFile] = useState(null);
+function ManualReceiptUpload({ depositAmount, depositMethod, profile, onSuccess, onCancel }: ManualReceiptUploadProps) {
+  const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
@@ -47,66 +57,6 @@ function ManualReceiptUpload({ depositAmount, depositMethod, profile, onSuccess,
       </div>
     </div>
   );
-}
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-
-const defaultStats = [
-  { label: "Total Deposit", value: "$0" },
-  { label: "Available Balance", value: "$0" },
-  { label: "Active Investment", value: "0" },
-  { label: "Total Profit", value: "$0" },
-  { label: "Ref. Bonus", value: "$0" },
-  { label: "Total Withdrawal", value: "$0" },
-];
-
-const sidebarTabs = [
-  { icon: "\u{1F5C3}", label: "Dashboard" },
-  { icon: "\u{1F4B3}", label: "Fund your account" },
-  { icon: "\u{1F4B8}", label: "Invest" },
-  { icon: "$", label: "Withdraw funds" },
-  { icon: "\u{1F4BC}", label: "Transaction history" },
-  { icon: "\u{1F464}\u{2795}", label: "Refer user" },
-];
-
-const DEPOSIT_ADDRESSES = {
-  BTC: {
-    address: "bc1q3vrjl9wwmksgtqx5lgxxztpsserjgu49emz8xh",
-    label: "Bitcoin (BTC)"
-  },
-  ETH: {
-    address: "0x528d76f59a5b2398f9eeebc01CdaB47A6AD129D6",
-    label: "Ethereum (ETH)"
-  },
-  USDT: {
-    address: "0x528d76f59a5b2398f9eeebc01CdaB47A6AD129D6",
-    label: "USDT (ERC20)"
-  }
-};
-
-import { useRouter } from "next/navigation";
-
-const DashboardPage = () => {
-  const [user, setUser] = useState<any>(null);
-  const [profile, setProfile] = useState<any>(null);
-  const [refLink, setRefLink] = useState("");
-  const [profit, setProfit] = useState(0);
-  const [prediction, setPrediction] = useState<{direction: string, startTime: string, entry: number, last: number} | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [greeting, setGreeting] = useState("");
-  const [stats, setStats] = useState(defaultStats);
-  const [activeTab, setActiveTab] = useState("Dashboard");
-  const [depositHistory, setDepositHistory] = useState([]);
-  const [showDepositModal, setShowDepositModal] = useState(false);
-  const [depositMethod, setDepositMethod] = useState("BTC");
-  const [depositAmount, setDepositAmount] = useState("");
-  const [copyMsg, setCopyMsg] = useState("");
-  const [depositStep, setDepositStep] = useState(0); // 0: input, 1: confirm, 2: success
-  const router = useRouter();
 
   // Client-side auth protection
   useEffect(() => {
@@ -128,6 +78,97 @@ const DashboardPage = () => {
             supabase.from('referral_bonuses').select('amount').eq('user_id', profileData.id),
           ]);
           setDepositHistory(deposits.data || []);
+          setInvestments(investments.data || []);
+  // Helper to get available balance from stats
+  const getAvailableBalance = () => {
+    const stat = stats.find(s => s.label === "Available Balance");
+    if (!stat) return 0;
+    return Number(stat.value.replace(/[^\d.]/g, ""));
+  };
+        {activeTab === 'Invest' && (
+          <>
+            <div className="w-full max-w-3xl bg-[#23272f] rounded-xl p-6 border border-[#23272f] flex flex-col gap-4">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-xl font-bold text-white">Your Investments</h3>
+                <button className="bg-[#3772ff] hover:bg-[#6c2bd7] text-white px-4 py-2 rounded-lg font-semibold" onClick={() => { setShowInvestModal(true); setInvestAmount(""); setInvestError(""); }}>Create Investment</button>
+              </div>
+              <div className="mb-2 text-gray-300">Available Balance: <span className="text-white font-bold">${getAvailableBalance().toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span></div>
+              <div className="overflow-x-auto">
+                <table className="min-w-full text-sm text-left text-gray-400">
+                  <thead>
+                    <tr className="bg-[#181a20]">
+                      <th className="px-4 py-2">Amount</th>
+                      <th className="px-4 py-2">Status</th>
+                      <th className="px-4 py-2">Profit</th>
+                      <th className="px-4 py-2">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {investments.length === 0 && (
+                      <tr><td colSpan={4} className="text-center py-4 text-gray-500">No investments yet.</td></tr>
+                    )}
+                    {investments.map((inv, i) => (
+                      <tr key={i} className="border-b border-[#23272f]">
+                        <td className="px-4 py-2">${Number(inv.amount).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+                        <td className="px-4 py-2 capitalize">{inv.status}</td>
+                        <td className="px-4 py-2">${Number(inv.profit || 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+                        <td className="px-4 py-2">{new Date(inv.created_at).toLocaleString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {/* Invest Modal */}
+            {showInvestModal && (
+              <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/60">
+                <div className="bg-[#23272f] rounded-2xl shadow-lg p-8 w-full max-w-md relative flex flex-col gap-6">
+                  <button className="absolute top-4 right-4 text-gray-400 hover:text-white" onClick={() => setShowInvestModal(false)}>&times;</button>
+                  <h3 className="text-xl font-bold text-white mb-2">Create Investment</h3>
+                  <div className="mb-2 text-gray-300">Available Balance: <span className="text-white font-bold">${getAvailableBalance().toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span></div>
+                  <label className="text-gray-300 font-semibold">Amount to Invest (USD)</label>
+                  <input
+                    type="number"
+                    min="10"
+                    className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none mb-2"
+                    value={investAmount}
+                    onChange={e => setInvestAmount(e.target.value)}
+                    placeholder="Enter amount (min $10)"
+                  />
+                  {investError && <div className="text-red-400 text-xs mb-2">{investError}</div>}
+                  <button
+                    className="w-full py-3 rounded-lg bg-gradient-to-r from-[#3772ff] to-[#6c2bd7] text-white font-bold text-lg shadow-md hover:from-[#6c2bd7] hover:to-[#3772ff] transition-all duration-200"
+                    onClick={async () => {
+                      setInvestError("");
+                      const amount = Number(investAmount);
+                      const balance = getAvailableBalance();
+                      if (!amount || amount < 10) {
+                        setInvestError("Minimum investment is $10.");
+                        return;
+                      }
+                      if (amount > balance) {
+                        setInvestError("Insufficient balance. Please deposit to invest.");
+                        return;
+                      }
+                      // Insert investment into DB
+                      await supabase.from('investments').insert({
+                        user_id: profile.id,
+                        amount: investAmount,
+                        status: 'active',
+                        profit: 0,
+                      });
+                      setShowInvestModal(false);
+                      setInvestAmount("");
+                      // Optionally, refresh investments and stats
+                      const { data: newInvestments } = await supabase.from('investments').select('*').eq('user_id', profile.id).order('created_at', { ascending: false });
+                      setInvestments(newInvestments || []);
+                    }}
+                  >Invest</button>
+                </div>
+              </div>
+            )}
+          </>
+        )}
           // Calculate stats
           const totalDeposit = deposits.data?.filter(d => d.status === 'completed').reduce((sum, d) => sum + Number(d.amount || 0), 0) || 0;
           const totalWithdrawal = withdrawals.data?.filter(w => w.status === 'completed').reduce((sum, w) => sum + Number(w.amount || 0), 0) || 0;
@@ -154,7 +195,7 @@ const DashboardPage = () => {
             const res = await fetch(`https://worldtimeapi.org/api/timezone`);
             const zones = await res.json();
             // Try to find a timezone that includes the country name
-            tz = zones.find((z) => z.toLowerCase().includes(country.toLowerCase()));
+            tz = zones.find((z: string) => z.toLowerCase().includes(country.toLowerCase()));
           } catch {}
         }
         let now = new Date();
@@ -167,9 +208,9 @@ const DashboardPage = () => {
         }
         const hour = now.getHours();
         let greet = "Hello";
-        if (hour >= 5 && hour < 12) greet = "Good morning";
-        else if (hour >= 12 && hour < 18) greet = "Good afternoon";
-        else greet = "Good evening";
+        if (hour >= 5 && hour < 12) greet = "Hello,";
+        else if (hour >= 12 && hour < 18) greet = "Hey,";
+        else greet = "Hi,";
         setGreeting(greet);
       }
     });
@@ -260,8 +301,7 @@ const DashboardPage = () => {
         {profile && (
           <div className="w-full max-w-4xl flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-2">
             <h2 className="text-lg font-semibold text-white">{greeting}, {profile.name || profile.username || 'User'}!</h2>
-            <span className="text-gray-400 text-xs">{profile.country ? `🌍 ${profile.country}` : null}</span>
-          </div>
+           </div>
         )}
         <h2 className="text-2xl font-bold text-white mb-4">Dashboard</h2>
         {/* Tabs */}
@@ -353,7 +393,7 @@ const DashboardPage = () => {
                           <button
                             key={key}
                             className={`px-4 py-2 rounded-lg font-semibold border ${depositMethod === key ? 'bg-[#3772ff] text-white border-[#3772ff]' : 'bg-[#181a20] text-gray-300 border-[#23272f]'}`}
-                            onClick={() => setDepositMethod(key)}
+                            onClick={() => setDepositMethod(key as keyof typeof DEPOSIT_ADDRESSES)}
                           >
                             {val.label}
                           </button>
@@ -442,8 +482,6 @@ const DashboardPage = () => {
                       onSuccess={() => { setDepositStep(2); setShowDepositModal(false); setDepositAmount(''); }}
                       onCancel={() => setDepositStep(0)}
                     />
-                  
-
                   )}
                   {depositStep === 99 && (
                     <div className="flex flex-col items-center gap-4 py-8">
