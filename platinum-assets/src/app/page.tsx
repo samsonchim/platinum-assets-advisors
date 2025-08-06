@@ -3,7 +3,11 @@
 
 
 import Image from "next/image";
+
 import Header from "./Header";
+import SolutionProcess from "./SolutionProcess";
+import PricingSection from "./PricingSection";
+import FAQSection from "./FAQSection";
 
 export default function Home() {
 
@@ -169,91 +173,16 @@ export default function Home() {
       </section>
 
 
+
       {/* Solution Process Section - Circular Design */}
-      <section id="solution-process" className="z-10 w-full max-w-4xl mx-auto mt-20 px-4 py-16 flex flex-col items-center">
-        <div className="mb-2 text-sm font-semibold tracking-widest text-[#3772ff] uppercase flex items-center gap-2">
-          <span className="inline-block w-8 h-1 bg-[#3772ff] rounded-full"></span>
-          Work Process
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-12 text-center">Our Solution Process</h2>
-        <div className="relative w-full flex items-center justify-center" style={{ minHeight: '420px' }}>
-          {/* SVG for arrows */}
-          <svg className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" width="380" height="380" viewBox="0 0 380 380" fill="none" style={{ zIndex: 0 }}>
-            <circle cx="190" cy="190" r="140" stroke="#23272f" strokeWidth="2" />
-            {/* Arrows between steps */}
-            <path d="M190 50 A140 140 0 0 1 320 190" stroke="#3772ff" strokeWidth="2" fill="none" markerEnd="url(#arrowhead1)" strokeDasharray="6 6"/>
-            <path d="M320 190 A140 140 0 0 1 190 330" stroke="#27ae60" strokeWidth="2" fill="none" markerEnd="url(#arrowhead2)" strokeDasharray="6 6"/>
-            <path d="M190 330 A140 140 0 0 1 60 190" stroke="#f2c94c" strokeWidth="2" fill="none" markerEnd="url(#arrowhead3)" strokeDasharray="6 6"/>
-            <path d="M60 190 A140 140 0 0 1 190 50" stroke="#e74c3c" strokeWidth="2" fill="none" markerEnd="url(#arrowhead4)" strokeDasharray="6 6"/>
-            <defs>
-              <marker id="arrowhead1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 L2,4 Z" fill="#3772ff"/></marker>
-              <marker id="arrowhead2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 L2,4 Z" fill="#27ae60"/></marker>
-              <marker id="arrowhead3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 L2,4 Z" fill="#f2c94c"/></marker>
-              <marker id="arrowhead4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,4 L0,8 L2,4 Z" fill="#e74c3c"/></marker>
-            </defs>
-          </svg>
-          {/* Steps positioned in a circle using trigonometry */}
-          <div className="absolute left-1/2 top-1/2 w-full h-full" style={{ transform: 'translate(-50%, -50%)', pointerEvents: 'none' }}>
-            {[
-              {
-                label: 'Register',
-                desc: 'Sign up quickly and easily to start your investment journey with us.',
-                color: '#6c2bd7',
-                border: 'border-[#6c2bd7]',
-                text: 'text-[#6c2bd7]',
-                num: '01',
-                angle: -90,
-              },
-              {
-                label: 'Invest',
-                desc: 'Choose your preferred investment options and start growing your wealth.',
-                color: '#16a34a',
-                border: 'border-[#16a34a]',
-                text: 'text-[#16a34a]',
-                num: '02',
-                angle: 0,
-              },
-              {
-                label: 'Earn',
-                desc: 'Watch your investments grow and enjoy the returns.',
-                color: '#eab308',
-                border: 'border-[#eab308]',
-                text: 'text-[#eab308]',
-                num: '03',
-                angle: 90,
-              },
-              {
-                label: 'Refer',
-                desc: 'Invite others to join and earn additional rewards through our referral program.',
-                color: '#ef4444',
-                border: 'border-[#ef4444]',
-                text: 'text-[#ef4444]',
-                num: '04',
-                angle: 180,
-              },
-            ].map((step, i) => {
-              // Circle center (cx, cy) and radius
-              const cx = 190, cy = 190, r = 110;
-              const rad = (step.angle * Math.PI) / 180;
-              // Offset to center the card
-              const cardW = 120, cardH = 90;
-              const x = cx + r * Math.cos(rad) - cardW / 2;
-              const y = cy + r * Math.sin(rad) - cardH / 2;
-              return (
-                <div
-                  key={step.num}
-                  className={`flex flex-col items-center w-32 absolute`}
-                  style={{ left: x, top: y, width: cardW, height: cardH, pointerEvents: 'auto' }}
-                >
-                  <div className={`w-12 h-12 flex items-center justify-center rounded-full border-2 ${step.border} bg-[#23272f] text-xl font-bold ${step.text} mb-1 shadow-lg`}>{step.num}</div>
-                  <h3 className="font-bold text-base text-white mb-0.5">{step.label}</h3>
-                  <p className="text-gray-400 text-center text-xs leading-tight">{step.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <SolutionProcess />
+
+
+      {/* Pricing Packages Section */}
+      <PricingSection />
+
+      {/* FAQ Section */}
+      <FAQSection />
 
       {/* Footer */}
       <footer className="z-10 mt-24 mb-8 flex flex-col items-center gap-2 text-gray-500">
