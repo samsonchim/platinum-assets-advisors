@@ -97,9 +97,78 @@ const FundAccountTab: React.FC<FundAccountTabProps> = ({ depositHistory, profile
 
   return (
     <>
+    <div className="flex flex-col gap-6">
+      {/* Active and Inactive Deposits Summary */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Active Deposits */}
+        <div className="bg-[#23272f] rounded-xl p-6 border border-[#23272f] relative">
+          <div className="absolute top-4 right-4">
+            <span className="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
+              Active Deposits
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+              <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                <path d="M2 6a2 2 0 012-2h16a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
+                <path d="M6 8h8v2H6V8z"/>
+              </svg>
+            </div>
+            <div className="flex flex-col">
+              <h3 className="text-2xl font-bold text-white">
+                ${depositHistory
+                  .filter(d => d.status === 'completed' || d.status === 'confirmed' || d.status === 'active')
+                  .reduce((sum, d) => sum + Number(d.amount), 0)
+                  .toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+              </h3>
+              <p className="text-gray-400 text-sm">Available Deposits</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Inactive Deposits */}
+        <div className="bg-[#23272f] rounded-xl p-6 border border-[#23272f] relative">
+          <div className="absolute top-4 right-4">
+            <span className="bg-orange-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
+              Inactive Deposits
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center relative">
+              <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                <svg width="12" height="12" fill="white" viewBox="0 0 24 24">
+                  <path d="M2 12a10 10 0 1010 10A10 10 0 002 12zm8-1h4v2h-4z"/>
+                </svg>
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <h3 className="text-2xl font-bold text-white">
+                ${depositHistory
+                  .filter(d => d.status === 'pending' || d.status === 'processing' || d.status === 'inactive')
+                  .reduce((sum, d) => sum + Number(d.amount), 0)
+                  .toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+              </h3>
+              <p className="text-gray-400 text-sm">Pending Deposits</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="w-full max-w-3xl bg-[#23272f] rounded-xl p-6 border border-[#23272f] flex flex-col gap-4">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-xl font-bold text-white">Deposit History</h3>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-[#3772ff] rounded-lg flex items-center justify-center text-white">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                <path d="m14,2 0,6 6,0"/>
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-white">Deposit History</h3>
+          </div>
           <button className="bg-[#3772ff] hover:bg-[#6c2bd7] text-white px-4 py-2 rounded-lg font-semibold" onClick={() => { setShowDepositModal(true); setDepositStep(0); }}>New Deposit</button>
         </div>
         <div className="overflow-x-auto">
@@ -270,6 +339,7 @@ const FundAccountTab: React.FC<FundAccountTabProps> = ({ depositHistory, profile
           </div>
         </div>
       )}
+    </div>
     </>
   );
 };

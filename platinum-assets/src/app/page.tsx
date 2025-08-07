@@ -20,8 +20,17 @@ export default function Home() {
         <div className="w-full h-full bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.02),rgba(255,255,255,0.02)_1px,transparent_1px,transparent_40px),repeating-linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.02)_1px,transparent_1px,transparent_40px)]" />
       </div>
 
-      <main className="z-10 flex flex-col items-center justify-center gap-6 sm:gap-8 py-16 sm:py-20 md:py-24 px-4 sm:px-8">
-        <div className="text-center max-w-5xl mx-auto">
+      <main className="z-10 flex flex-col items-center justify-center gap-6 sm:gap-8 py-16 sm:py-20 md:py-24 px-4 sm:px-8 relative">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 pointer-events-none">
+          <img 
+            src="/hero.png" 
+            alt="Financial Investment Solutions" 
+            className="w-full h-full object-cover opacity-20"
+          />
+        </div>
+        
+        <div className="text-center max-w-5xl mx-auto relative z-10">
           <h2 className="text-base sm:text-lg md:text-xl font-semibold text-[#3772ff] mb-3 sm:mb-4 animate-fade-in">Welcome to Platinum Asset Advisors</h2>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white text-center leading-tight mb-4 sm:mb-6 animate-fade-in-up">
             Building Lasting Value<br className="hidden sm:block" />
@@ -224,8 +233,17 @@ export default function Home() {
       {/* FAQ Section */}
       <FAQSection />
 
+      {/* Footer decoration */}
+      <div className="z-10 w-full max-w-4xl mx-auto mt-16 mb-8">
+        <img 
+          src="/footer-decoration.svg" 
+          alt="Decorative Footer Element" 
+          className="w-full h-auto opacity-60"
+        />
+      </div>
+
       {/* Footer */}
-      <footer className="z-10 mt-24 mb-8 flex flex-col items-center gap-2 text-gray-500">
+      <footer className="z-10 mb-8 flex flex-col items-center gap-2 text-gray-500">
         <div className="flex gap-4">
           <a href="/terms" className="hover:text-[#3772ff] transition-colors">Terms</a>
           <a href="/privacy" className="hover:text-[#27ae60] transition-colors">Privacy</a>

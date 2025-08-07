@@ -1,0 +1,35 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" rx="20" fill="url(#grad6)"/>
+  <defs>
+    <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#181a20;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#23272f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Hero illustration with financial elements -->
+  <circle cx="200" cy="100" r="40" fill="#3772ff" opacity="0.2"/>
+  <circle cx="200" cy="100" r="25" fill="#3772ff" opacity="0.4"/>
+  <circle cx="200" cy="100" r="12" fill="#3772ff" opacity="0.8"/>
+  
+  <!-- Floating elements around the center -->
+  <rect x="120" y="60" width="30" height="20" rx="4" fill="white" opacity="0.1"/>
+  <rect x="250" y="60" width="30" height="20" rx="4" fill="white" opacity="0.1"/>
+  <rect x="120" y="140" width="30" height="20" rx="4" fill="white" opacity="0.1"/>
+  <rect x="250" y="140" width="30" height="20" rx="4" fill="white" opacity="0.1"/>
+  
+  <!-- Chart lines -->
+  <path d="M80 200 L120 180 L160 190 L200 170 L240 180 L280 160 L320 170" stroke="#27ae60" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M80 220 L120 210 L160 225 L200 205 L240 215 L280 200 L320 210" stroke="#e74c3c" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- Data points -->
+  <circle cx="120" cy="180" r="3" fill="#27ae60"/>
+  <circle cx="200" cy="170" r="3" fill="#27ae60"/>
+  <circle cx="280" cy="160" r="3" fill="#27ae60"/>
+  
+  <!-- Currency symbols -->
+  <text x="60" y="50" text-anchor="middle" fill="#f2c94c" font-family="Arial, sans-serif" font-size="16" font-weight="bold" opacity="0.7">$</text>
+  <text x="340" y="50" text-anchor="middle" fill="#f2c94c" font-family="Arial, sans-serif" font-size="16" font-weight="bold" opacity="0.7">€</text>
+  <text x="60" y="250" text-anchor="middle" fill="#f2c94c" font-family="Arial, sans-serif" font-size="16" font-weight="bold" opacity="0.7">₿</text>
+  <text x="340" y="250" text-anchor="middle" fill="#f2c94c" font-family="Arial, sans-serif" font-size="16" font-weight="bold" opacity="0.7">¥</text>
+</svg>

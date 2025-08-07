@@ -99,31 +99,31 @@ const SignupPage = () => {
         {error && <div className="text-red-500 text-center text-sm">{error}</div>}
         {success && <div className="text-green-500 text-center text-sm">{success}</div>}
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-semibold">Full Name</label>
+          <label className="text-gray-300 font-semibold text-sm w-fit">Full Name</label>
           <input name="name" value={form.name} onChange={handleChange} className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none" required />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-semibold">Username</label>
+          <label className="text-gray-300 font-semibold text-sm w-fit">Username</label>
           <input name="username" value={form.username} onChange={handleChange} className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none" required />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-semibold">Email</label>
+          <label className="text-gray-300 font-semibold text-sm w-fit">Email</label>
           <input name="email" type="email" value={form.email} onChange={handleChange} className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none" required />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-semibold">Password</label>
+          <label className="text-gray-300 font-semibold text-sm w-fit">Password</label>
           <input name="password" type="password" value={form.password} onChange={handleChange} className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none" required />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-semibold">Confirm Password</label>
+          <label className="text-gray-300 font-semibold text-sm w-fit">Confirm Password</label>
           <input name="confirmPassword" type="password" value={form.confirmPassword} onChange={handleChange} className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none" required />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-semibold">Referral Code <span className="text-gray-500">(optional)</span></label>
+          <label className="text-gray-300 font-semibold text-sm w-fit">Referral Code <span className="text-gray-500">(optional)</span></label>
           <input name="referral" value={form.referral} onChange={handleChange} className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none" />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-semibold">Country</label>
+          <label className="text-gray-300 font-semibold text-sm w-fit">Country</label>
           <input name="country" value={form.country} readOnly className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none" />
         </div>
         <button

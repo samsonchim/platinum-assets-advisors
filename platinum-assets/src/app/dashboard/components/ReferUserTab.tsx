@@ -81,7 +81,15 @@ const ReferUserTab: React.FC<ReferUserTabProps> = ({ refLink }) => {
   return (
     <div className="w-full max-w-4xl bg-[#23272f] rounded-xl p-4 md:p-6 border border-[#23272f] flex flex-col gap-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h3 className="text-xl font-bold text-white">Refer Users & Earn</h3>
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-[#f2c94c] rounded-lg flex items-center justify-center text-[#181a20]">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              <path d="M19 8l-2 2 2 2v-4z"/>
+            </svg>
+          </div>
+          <h3 className="text-xl font-bold text-white">Refer Users & Earn</h3>
+        </div>
       </div>
 
       {/* Referral Stats */}

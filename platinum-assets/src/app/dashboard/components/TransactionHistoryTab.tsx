@@ -8,7 +8,16 @@ const TransactionHistoryTab: React.FC = () => {
   return (
     <div className="w-full max-w-5xl bg-[#23272f] rounded-xl p-4 md:p-6 border border-[#23272f] flex flex-col gap-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
-        <h3 className="text-xl font-bold text-white">Transaction History</h3>
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-[#f2c94c] rounded-lg flex items-center justify-center text-[#181a20]">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+              <path d="m14,2 0,6 6,0"/>
+              <path d="M8 12h8M8 16h8M8 8h2"/>
+            </svg>
+          </div>
+          <h3 className="text-xl font-bold text-white">Transaction History</h3>
+        </div>
       </div>
 
       <div className="overflow-x-auto -mx-4 md:mx-0">

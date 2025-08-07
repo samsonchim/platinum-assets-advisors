@@ -95,7 +95,15 @@ const WithdrawTab: React.FC<WithdrawTabProps> = ({ userBalance = 0 }) => {
     <div className="relative">
       <div className="w-full max-w-5xl bg-[#23272f] rounded-xl p-3 sm:p-4 md:p-6 border border-[#23272f] flex flex-col gap-3 sm:gap-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-2">
-          <h3 className="text-lg sm:text-xl font-bold text-white">Withdraw Funds</h3>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-[#27ae60] rounded-lg flex items-center justify-center text-white">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                <path d="M12 2v10l-3-3M12 12l3-3"/>
+              </svg>
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold text-white">Withdraw Funds</h3>
+          </div>
           <button 
             className="bg-[#27ae60] hover:bg-[#219a52] text-white px-4 py-3 sm:py-2 rounded-lg font-semibold w-full sm:w-auto text-sm sm:text-base"
             onClick={handleWithdrawClick}

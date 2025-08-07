@@ -1,0 +1,37 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="200" rx="20" fill="url(#grad7)"/>
+  <defs>
+    <linearGradient id="grad7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3772ff;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#6c2bd7;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Central marketplace icon -->
+  <circle cx="150" cy="100" r="35" fill="#3772ff" opacity="0.2"/>
+  <circle cx="150" cy="100" r="20" fill="#3772ff" opacity="0.6"/>
+  <rect x="140" y="90" width="20" height="20" rx="3" fill="white" opacity="0.9"/>
+  <circle cx="150" cy="100" r="6" fill="#3772ff"/>
+  
+  <!-- Speed indicators -->
+  <path d="M50 50 L80 60 L70 80 L40 70 Z" fill="#27ae60" opacity="0.6"/>
+  <path d="M250 50 L280 70 L270 80 L220 60 Z" fill="#27ae60" opacity="0.6"/>
+  
+  <!-- Security shields -->
+  <path d="M70 130 L70 120 Q70 115 75 115 L85 115 Q90 115 90 120 L90 130 Q90 150 80 155 Q70 150 70 130 Z" fill="#e74c3c" opacity="0.7"/>
+  <path d="M210 130 L210 120 Q210 115 215 115 L225 115 Q230 115 230 120 L230 130 Q230 150 220 155 Q210 150 210 130 Z" fill="#e74c3c" opacity="0.7"/>
+  
+  <!-- Trading tools -->
+  <rect x="60" y="40" width="30" height="20" rx="3" fill="white" opacity="0.1"/>
+  <rect x="210" y="40" width="30" height="20" rx="3" fill="white" opacity="0.1"/>
+  
+  <!-- Support indicators -->
+  <circle cx="80" cy="170" r="8" fill="#f2c94c" opacity="0.7"/>
+  <circle cx="220" cy="170" r="8" fill="#f2c94c" opacity="0.7"/>
+  <text x="80" y="175" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">24/7</text>
+  <text x="220" y="175" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">24/7</text>
+  
+  <!-- Connection lines -->
+  <path d="M80 100 Q115 85 150 100 Q185 85 220 100" stroke="white" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M100 60 Q125 75 150 60 Q175 75 200 60" stroke="white" stroke-width="1" fill="none" opacity="0.3"/>
+</svg>
