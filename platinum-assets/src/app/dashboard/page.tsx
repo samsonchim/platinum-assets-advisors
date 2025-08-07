@@ -8,6 +8,7 @@ import InvestTab from "./components/InvestTab";
 import WithdrawTab from "./components/WithdrawTab";
 import TransactionHistoryTab from "./components/TransactionHistoryTab";
 import ReferUserTab from "./components/ReferUserTab";
+import KYCTab from "./components/KYCTab";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -29,6 +30,7 @@ const sidebarTabs = [
   { icon: "$", label: "Withdraw funds" },
   { icon: "\u{1F4BC}", label: "Transaction history" },
   { icon: "\u{1F464}\u{2795}", label: "Refer user" },
+  { icon: "\u{1F6E1}", label: "KYC Verification" },
   { icon: "\u{1F6AA}", label: "Logout", isLogout: true },
 ];
 
@@ -220,6 +222,7 @@ const DashboardPage = () => {
         {activeTab === 'Withdraw funds' && <WithdrawTab userBalance={getAvailableBalance()} />}
         {activeTab === 'Transaction history' && <TransactionHistoryTab />}
         {activeTab === 'Refer user' && <ReferUserTab refLink={refLink} />}
+        {activeTab === 'KYC Verification' && <KYCTab />}
       </main>
     </div>
   );

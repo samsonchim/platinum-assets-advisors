@@ -15,84 +15,48 @@ const InvestTab: React.FC<InvestTabProps> = ({ userBalance = 0 }) => {
   const investmentOptions = [
     { 
       value: "500", 
-      label: "$500", 
+      label: "$500 - $1,000", 
       plan: "Starter Plan",
-      duration: "30 days",
-      roi: "15%",
-      dailyReturn: "0.5%",
-      totalReturn: "$575"
+      duration: "7 days",
+      roi: "10%",
+      dailyReturn: "0.71%",
+      totalReturn: "$1,000"
     },
     { 
       value: "1000", 
-      label: "$1,000", 
+      label: "$1,000 - $3,000", 
       plan: "Basic Plan",
-      duration: "30 days",
-      roi: "18%",
-      dailyReturn: "0.6%",
-      totalReturn: "$1,180"
-    },
-    { 
-      value: "3000", 
-      label: "$3,000", 
-      plan: "Silver Plan",
-      duration: "45 days",
-      roi: "25%",
-      dailyReturn: "0.55%",
-      totalReturn: "$3,750"
+      duration: "14 days",
+      roi: "12%",
+      dailyReturn: "0.86%",
+      totalReturn: "$3,360"
     },
     { 
       value: "5000", 
-      label: "$5,000", 
+      label: "$5,000 - $10,000", 
       plan: "Gold Plan",
-      duration: "45 days",
-      roi: "30%",
-      dailyReturn: "0.67%",
-      totalReturn: "$6,500"
-    },
-    { 
-      value: "10000", 
-      label: "$10,000", 
-      plan: "Premium Plan",
-      duration: "60 days",
-      roi: "40%",
-      dailyReturn: "0.67%",
-      totalReturn: "$14,000"
+      duration: "14 days",
+      roi: "18%",
+      dailyReturn: "1.29%",
+      totalReturn: "$11,800"
     },
     { 
       value: "20000", 
-      label: "$20,000", 
+      label: "$20,000 - $30,000", 
       plan: "Platinum Plan",
-      duration: "60 days",
-      roi: "45%",
-      dailyReturn: "0.75%",
-      totalReturn: "$29,000"
-    },
-    { 
-      value: "30000", 
-      label: "$30,000", 
-      plan: "Diamond Plan",
-      duration: "90 days",
-      roi: "55%",
-      dailyReturn: "0.61%",
-      totalReturn: "$46,500"
+      duration: "14 days",
+      roi: "22%",
+      dailyReturn: "1.57%",
+      totalReturn: "$36,600"
     },
     { 
       value: "50000", 
-      label: "$50,000", 
+      label: "$50,000 - $100,000", 
       plan: "Elite Plan",
-      duration: "90 days",
-      roi: "65%",
-      dailyReturn: "0.72%",
-      totalReturn: "$82,500"
-    },
-    { 
-      value: "100000", 
-      label: "$100,000", 
-      plan: "VIP Plan",
-      duration: "120 days",
-      roi: "80%",
-      dailyReturn: "0.67%",
-      totalReturn: "$180,000"
+      duration: "14 days",
+      roi: "28%",
+      dailyReturn: "2.00%",
+      totalReturn: " $128,000"
     },
   ];
 
