@@ -21,30 +21,30 @@ const DashboardTab: React.FC<DashboardTabProps> = ({ stats, refLink, prediction,
         {stats.map((stat, index) => {
           const icons = [
             // Total Deposit
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <svg key="deposit" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
               <path d="M2 6a2 2 0 012-2h16a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
               <path d="M6 8h8v2H6V8z"/>
             </svg>,
             // Available Balance
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <svg key="balance" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
             </svg>,
             // Active Investment
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <svg key="investment" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
               <path d="M3 21l1.9-5.7a8.5 8.5 0 113.8 0L10.6 21H3z"/>
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
             </svg>,
             // Total Profit
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <svg key="profit" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
               <path d="M2 12l9-7 3 3 8-8v6l-8 8-3-3-9 7z"/>
             </svg>,
             // Ref. Bonus
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <svg key="referral" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
               <path d="M19 8l-2 2 2 2v-4z"/>
             </svg>,
             // Total Withdrawal
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <svg key="withdrawal" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
               <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
               <path d="M12 2v10l-3-3M12 12l3-3"/>
             </svg>
