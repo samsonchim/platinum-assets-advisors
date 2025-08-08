@@ -2,21 +2,14 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #1a1a1a;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary: #f1f5f9;
+  --accent: #3b82f6;
+  --border: #e2e8f0;
+  --card-bg: #ffffff;
+  --hover-bg: #f8fafc;
 }
 
 body {
@@ -25,13 +18,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Neon Cyberpunk Animations */
-@keyframes neon-glow {
-  0%, 100% { filter: drop-shadow(0 0 8px #00ffe7) drop-shadow(0 0 16px #ff00cc); }
-  50% { filter: drop-shadow(0 0 24px #ff00cc) drop-shadow(0 0 32px #00ffe7); }
+/* White Theme Animations */
+@keyframes subtle-glow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1); }
+  50% { box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2); }
 }
-.animate-neon-glow {
-  animation: neon-glow 2s infinite alternate;
+.animate-subtle-glow {
+  animation: subtle-glow 2s infinite alternate;
 }
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(40px); }
@@ -47,22 +40,22 @@ body {
 .delay-1000 { animation-delay: 1s; }
 @keyframes card-float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px) scale(1.03); }
+  50% { transform: translateY(-8px) scale(1.02); }
 }
 .animate-card-float {
   animation: card-float 3s ease-in-out infinite;
 }
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
 }
 .animate-pulse-slow {
   animation: pulse-slow 6s ease-in-out infinite;
 }
-@keyframes glow {
-  0%, 100% { text-shadow: 0 0 16px #00ffe7, 0 0 32px #ff00cc; }
-  50% { text-shadow: 0 0 32px #ff00cc, 0 0 48px #00ffe7; }
+@keyframes blue-glow {
+  0%, 100% { text-shadow: 0 0 8px rgba(37, 99, 235, 0.3); }
+  50% { text-shadow: 0 0 16px rgba(37, 99, 235, 0.5); }
 }
-.animate-glow {
-  animation: glow 2.5s infinite alternate;
+.animate-blue-glow {
+  animation: blue-glow 2.5s infinite alternate;
 }

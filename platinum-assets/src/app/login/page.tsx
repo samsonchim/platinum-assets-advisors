@@ -39,35 +39,35 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#181a20] via-[#23272f] to-[#16181d] flex flex-col items-center justify-center relative overflow-hidden font-sans">
-      {/* TradingView grid bg */}
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col items-center justify-center relative overflow-hidden font-sans">
+      {/* Subtle grid background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="w-full h-full bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.02),rgba(255,255,255,0.02)_1px,transparent_1px,transparent_40px),repeating-linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.02)_1px,transparent_1px,transparent_40px)]" />
+        <div className="w-full h-full bg-[repeating-linear-gradient(0deg,rgba(0,0,0,0.01),rgba(0,0,0,0.01)_1px,transparent_1px,transparent_40px),repeating-linear-gradient(90deg,rgba(0,0,0,0.01),rgba(0,0,0,0.01)_1px,transparent_1px,transparent_40px)]" />
       </div>
       <form
         onSubmit={handleSubmit}
-        className="z-10 w-full max-w-md bg-[#23272f] rounded-2xl shadow-lg p-8 flex flex-col gap-6 mt-24"
+        className="z-10 w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col gap-6 mt-24 border border-gray-200"
         autoComplete="off"
       >
-        <h2 className="text-3xl font-extrabold text-white text-center mb-2">Login</h2>
-        {error && <div className="text-red-500 text-center text-sm">{error}</div>}
+        <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-2">Login</h2>
+        {error && <div className="text-red-600 text-center text-sm bg-red-50 border border-red-200 rounded-lg p-3">{error}</div>}
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-semibold">Email</label>
-          <input name="email" type="email" value={form.email} onChange={handleChange} className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none" required />
+          <label className="text-gray-700 font-semibold">Email</label>
+          <input name="email" type="email" value={form.email} onChange={handleChange} className="px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" required />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-gray-300 font-semibold">Password</label>
-          <input name="password" type="password" value={form.password} onChange={handleChange} className="px-4 py-2 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#3772ff] outline-none" required />
+          <label className="text-gray-700 font-semibold">Password</label>
+          <input name="password" type="password" value={form.password} onChange={handleChange} className="px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" required />
         </div>
         <button
           type="submit"
-          className="mt-2 py-3 rounded-lg bg-gradient-to-r from-[#3772ff] to-[#6c2bd7] text-white font-bold text-lg shadow-md hover:from-[#6c2bd7] hover:to-[#3772ff] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3772ff]"
+          className="mt-2 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold text-lg shadow-md hover:from-blue-700 hover:to-blue-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           disabled={loading}
         >
           {loading ? "Logging In..." : "Login"}
         </button>
-        <div className="text-gray-400 text-center text-sm mt-2">
-          Don&apos;t have an account? <a href="/signup" className="text-[#3772ff] hover:underline">Sign Up</a>
+        <div className="text-gray-600 text-center text-sm mt-2">
+          Don&apos;t have an account? <a href="/signup" className="text-blue-600 hover:underline">Sign Up</a>
         </div>
       </form>
     </div>

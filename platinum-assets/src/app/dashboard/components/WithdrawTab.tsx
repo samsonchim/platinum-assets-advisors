@@ -93,19 +93,19 @@ const WithdrawTab: React.FC<WithdrawTabProps> = ({ userBalance = 0 }) => {
 
   return (
     <div className="relative">
-      <div className="w-full max-w-5xl bg-[#23272f] rounded-xl p-3 sm:p-4 md:p-6 border border-[#23272f] flex flex-col gap-3 sm:gap-4">
+      <div className="w-full max-w-5xl bg-white rounded-xl p-3 sm:p-4 md:p-6 border border-gray-200 shadow-lg flex flex-col gap-3 sm:gap-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-2">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-[#27ae60] rounded-lg flex items-center justify-center text-white">
+            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center text-white">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
                 <path d="M12 2v10l-3-3M12 12l3-3"/>
               </svg>
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white">Withdraw Funds</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900">Withdraw Funds</h3>
           </div>
           <button 
-            className="bg-[#27ae60] hover:bg-[#219a52] text-white px-4 py-3 sm:py-2 rounded-lg font-semibold w-full sm:w-auto text-sm sm:text-base"
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-3 sm:py-2 rounded-lg font-semibold w-full sm:w-auto text-sm sm:text-base shadow-md transition-colors"
             onClick={handleWithdrawClick}
           >
             Withdraw Funds
@@ -113,19 +113,19 @@ const WithdrawTab: React.FC<WithdrawTabProps> = ({ userBalance = 0 }) => {
         </div>
         
         <div className="mb-2 sm:mb-4">
-          <div className="text-xs sm:text-sm text-gray-400">Available Balance: <span className="text-white font-semibold">${userBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span></div>
+          <div className="text-xs sm:text-sm text-gray-600">Available Balance: <span className="text-gray-900 font-semibold">${userBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span></div>
         </div>
 
         <div className="overflow-x-auto -mx-3 sm:-mx-4 md:mx-0">
           <div className="min-w-full inline-block align-middle">
-            <table className="min-w-full text-sm text-left text-gray-400">
+            <table className="min-w-full text-sm text-left text-gray-600 bg-white rounded-lg border border-gray-200">
               <thead>
-                <tr className="bg-[#181a20]">
-                  <th className="px-2 sm:px-3 md:px-4 py-2 whitespace-nowrap text-xs sm:text-sm">Date</th>
-                  <th className="px-2 sm:px-3 md:px-4 py-2 whitespace-nowrap text-xs sm:text-sm">Amount</th>
-                  <th className="px-2 sm:px-3 md:px-4 py-2 whitespace-nowrap text-xs sm:text-sm hidden sm:table-cell">Method</th>
-                  <th className="px-2 sm:px-3 md:px-4 py-2 whitespace-nowrap text-xs sm:text-sm">Status</th>
-                  <th className="px-2 sm:px-3 md:px-4 py-2 whitespace-nowrap text-xs sm:text-sm hidden md:table-cell">Transaction ID</th>
+                <tr className="bg-gray-50 border-b border-gray-200">
+                  <th className="px-2 sm:px-3 md:px-4 py-3 whitespace-nowrap text-xs sm:text-sm font-semibold text-gray-900">Date</th>
+                  <th className="px-2 sm:px-3 md:px-4 py-3 whitespace-nowrap text-xs sm:text-sm font-semibold text-gray-900">Amount</th>
+                  <th className="px-2 sm:px-3 md:px-4 py-3 whitespace-nowrap text-xs sm:text-sm font-semibold text-gray-900 hidden sm:table-cell">Method</th>
+                  <th className="px-2 sm:px-3 md:px-4 py-3 whitespace-nowrap text-xs sm:text-sm font-semibold text-gray-900">Status</th>
+                  <th className="px-2 sm:px-3 md:px-4 py-3 whitespace-nowrap text-xs sm:text-sm font-semibold text-gray-900 hidden md:table-cell">Transaction ID</th>
                 </tr>
               </thead>
               <tbody>
@@ -168,55 +168,55 @@ const WithdrawTab: React.FC<WithdrawTabProps> = ({ userBalance = 0 }) => {
 
       {/* Withdrawal Modal */}
       {showWithdrawModal && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/60 p-3 sm:p-4">
-          <div className="bg-[#23272f] rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 w-full max-w-sm sm:max-w-md relative flex flex-col gap-3 sm:gap-4 md:gap-6 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/50 p-3 sm:p-4">
+          <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 w-full max-w-sm sm:max-w-md relative flex flex-col gap-3 sm:gap-4 md:gap-6 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto border border-gray-200">
             <button 
-              className="absolute top-3 sm:top-4 right-3 sm:right-4 text-gray-400 hover:text-white text-2xl sm:text-2xl w-8 h-8 flex items-center justify-center"
+              className="absolute top-3 sm:top-4 right-3 sm:right-4 text-gray-500 hover:text-gray-700 text-2xl sm:text-2xl w-8 h-8 flex items-center justify-center"
               onClick={() => setShowWithdrawModal(false)}
             >
               &times;
             </button>
             
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-1 sm:mb-2 pr-10 sm:pr-8">Withdraw Funds</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2 pr-10 sm:pr-8">Withdraw Funds</h3>
             
             <div className="flex flex-col gap-3 sm:gap-4">
               <div>
-                <label className="text-sm sm:text-base text-gray-300 font-semibold">Available Balance</label>
-                <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#27ae60]">
+                <label className="text-sm sm:text-base text-gray-700 font-semibold">Available Balance</label>
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600">
                   ${userBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                 </div>
               </div>
 
               <div>
-                <label className="text-sm sm:text-base text-gray-300 font-semibold">Withdrawal Amount (USD)</label>
+                <label className="text-sm sm:text-base text-gray-700 font-semibold">Withdrawal Amount (USD)</label>
                 <input
                   type="number"
                   min="50"
                   max={userBalance}
-                  className="w-full px-3 sm:px-4 py-3 rounded-lg bg-[#181a20] border border-[#23272f] text-white focus:ring-2 focus:ring-[#27ae60] outline-none mt-1 text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none mt-1 text-sm sm:text-base"
                   value={withdrawAmount}
                   onChange={e => setWithdrawAmount(e.target.value)}
                   placeholder="Enter amount (min $50)"
                 />
-                <div className="text-xs text-gray-400 mt-1">Minimum withdrawal: $50</div>
+                <div className="text-xs text-gray-500 mt-1">Minimum withdrawal: $50</div>
               </div>
 
               {withdrawError && (
-                <div className="text-red-400 text-xs sm:text-sm bg-red-400/10 border border-red-400/20 rounded-lg p-2 sm:p-3">
+                <div className="text-red-600 text-xs sm:text-sm bg-red-50 border border-red-200 rounded-lg p-2 sm:p-3">
                   {withdrawError}
                 </div>
               )}
 
               <div className="flex flex-col gap-2 sm:gap-3 mt-3 sm:mt-4">
                 <button
-                  className="w-full py-3 sm:py-3 rounded-lg bg-gradient-to-r from-[#27ae60] to-[#2ecc71] text-white font-bold text-sm sm:text-lg shadow-md hover:from-[#219a52] hover:to-[#27ae60] transition-all duration-200 disabled:opacity-50"
+                  className="w-full py-3 sm:py-3 rounded-lg bg-gradient-to-r from-green-600 to-green-700 text-white font-bold text-sm sm:text-lg shadow-md hover:from-green-700 hover:to-green-800 transition-all duration-200 disabled:opacity-50"
                   onClick={handleWithdrawSubmit}
                   disabled={!withdrawAmount}
                 >
                   Next
                 </button>
                 <button
-                  className="w-full py-3 sm:py-3 rounded-lg bg-gray-600 text-white font-bold text-sm sm:text-lg shadow-md hover:bg-gray-700 transition-all duration-200"
+                  className="w-full py-3 sm:py-3 rounded-lg bg-gray-500 text-white font-bold text-sm sm:text-lg shadow-md hover:bg-gray-600 transition-all duration-200"
                   onClick={() => setShowWithdrawModal(false)}
                 >
                   Cancel
@@ -232,7 +232,7 @@ const WithdrawTab: React.FC<WithdrawTabProps> = ({ userBalance = 0 }) => {
         {notifications.map((notification) => (
           <div
             key={notification.id}
-            className="mb-1 sm:mb-2 bg-gradient-to-r from-[#27ae60] to-[#2ecc71] text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg shadow-lg animate-[slideInFadeOut_8s_ease-in-out_forwards] max-w-[280px] sm:max-w-xs"
+            className="mb-1 sm:mb-2 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg shadow-lg animate-[slideInFadeOut_8s_ease-in-out_forwards] max-w-[280px] sm:max-w-xs"
             style={{
               animation: `slideInFadeOut 8s ease-in-out forwards`
             }}

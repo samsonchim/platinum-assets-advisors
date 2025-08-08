@@ -144,14 +144,14 @@ const DashboardPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#181a20] via-[#23272f] to-[#16181d] flex relative font-sans">
+    <div className="min-h-screen w-full bg-white flex relative font-sans">
       {/* TradingView grid bg */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="w-full h-full bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.02),rgba(255,255,255,0.02)_1px,transparent_1px,transparent_40px),repeating-linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.02)_1px,transparent_1px,transparent_40px)]" />
+        <div className="w-full h-full bg-[repeating-linear-gradient(0deg,rgba(0,0,0,0.03),rgba(0,0,0,0.03)_1px,transparent_1px,transparent_40px),repeating-linear-gradient(90deg,rgba(0,0,0,0.03),rgba(0,0,0,0.03)_1px,transparent_1px,transparent_40px)]" />
       </div>
       {/* Mobile sidebar toggle button */}
       <button
-        className="md:hidden fixed top-4 right-4 z-30 bg-[#23272f] text-white p-3 rounded-full shadow-lg border border-[#3772ff] focus:outline-none"
+        className="md:hidden fixed top-4 right-4 z-30 bg-white text-gray-700 p-3 rounded-full shadow-lg border border-blue-200 focus:outline-none"
         onClick={() => setSidebarOpen((v) => !v)}
         aria-label="Toggle sidebar"
       >
@@ -167,16 +167,16 @@ const DashboardPage = () => {
       </button>
       {/* Sidebar */}
       <aside
-        className={`z-20 fixed md:static top-0 left-0 h-full w-64 bg-[#181a20] border-r border-[#23272f] flex flex-col py-10 gap-2 transition-transform duration-300 md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:w-56 md:min-h-screen`}
+        className={`z-20 fixed md:static top-0 left-0 h-full w-64 bg-gray-50 border-r border-gray-200 flex flex-col py-10 gap-2 transition-transform duration-300 md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:w-56 md:min-h-screen shadow-lg`}
         style={{ maxWidth: 260 }}
       >
         {sidebarTabs.map((tab) => (
           <div
             key={tab.label}
-            className={`flex items-center gap-3 px-6 py-3 text-gray-300 hover:bg-[#23272f] rounded-lg cursor-pointer text-base font-medium ${
+            className={`flex items-center gap-3 px-6 py-3 text-gray-600 hover:bg-blue-50 rounded-lg cursor-pointer text-base font-medium mx-2 ${
               tab.isLogout 
-                ? 'hover:bg-red-600/20 hover:text-red-400 mt-4 border-t border-[#23272f] pt-6' 
-                : activeTab === tab.label ? 'bg-[#23272f] text-[#3772ff]' : ''
+                ? 'hover:bg-red-50 hover:text-red-600 mt-4 border-t border-gray-200 pt-6' 
+                : activeTab === tab.label ? 'bg-blue-100 text-blue-700 shadow-sm' : ''
             }`}
             onClick={() => handleTabClick(tab)}
           >
@@ -198,10 +198,10 @@ const DashboardPage = () => {
         {/* Greeting */}
         {profile && (
           <div className="w-full max-w-4xl flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-2">
-            <h2 className="text-lg font-semibold text-white">Hello, {profile.name || profile.username || 'User'}!</h2>
+            <h2 className="text-lg font-semibold text-gray-700">Hello, {profile.name || profile.username || 'User'}!</h2>
            </div>
         )}
-        <h2 className="text-2xl font-bold text-white mb-4">Dashboard</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Dashboard</h2>
         
         {/* Tab Content */}
         {activeTab === 'Dashboard' && (
