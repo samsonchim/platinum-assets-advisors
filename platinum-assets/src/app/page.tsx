@@ -16,27 +16,35 @@ export default function Home() {
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col items-center justify-center relative overflow-hidden font-sans">
       <Header />
 
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="w-full h-full bg-[repeating-linear-gradient(0deg,rgba(0,0,0,0.01),rgba(0,0,0,0.01)_1px,transparent_1px,transparent_40px),repeating-linear-gradient(90deg,rgba(0,0,0,0.01),rgba(0,0,0,0.01)_1px,transparent_1px,transparent_40px)]" />
-      </div>
-
       <main className="z-10 flex flex-col items-center justify-center gap-6 sm:gap-8 py-16 sm:py-20 md:py-24 px-4 sm:px-8 relative">
-        {/* Hero Background Image */}
+        {/* Hero Background Image Slider */}
         <div className="absolute inset-0 pointer-events-none">
-          <img 
-            src="/hero.png" 
-            alt="Financial Investment Solutions" 
-            className="w-full h-full object-cover opacity-5"
-          />
+          <div className="relative w-full h-full">
+            <img 
+              src="/hero.png" 
+              alt="Financial Investment Solutions" 
+              className="absolute w-full h-full object-cover animate-[heroSlide_15s_infinite_0s]"
+            />
+            <img 
+              src="/hero2.png" 
+              alt="Investment Strategy" 
+              className="absolute w-full h-full object-cover animate-[heroSlide_15s_infinite_5s]"
+            />
+            <img 
+              src="/hero3.png" 
+              alt="Financial Growth" 
+              className="absolute w-full h-full object-cover animate-[heroSlide_15s_infinite_10s]"
+            />
+          </div>
         </div>
         
         <div className="text-center max-w-5xl mx-auto relative z-10">
-          <h2 className="text-base sm:text-lg md:text-xl font-semibold text-blue-600 mb-3 sm:mb-4 animate-fade-in">Welcome to Platinum Asset Advisors</h2>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 text-center leading-tight mb-4 sm:mb-6 animate-fade-in-up">
+          <h2 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-3 sm:mb-4 animate-fade-in">Welcome to Platinum Asset Advisors</h2>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white text-center leading-tight mb-4 sm:mb-6 animate-fade-in-up">
             Building Lasting Value<br className="hidden sm:block" />
             <span className="sm:hidden"> </span>Through Innovative Investment Solutions
           </h1>
-          <p className="max-w-2xl mx-auto text-center text-sm sm:text-base md:text-lg text-gray-600 font-normal mb-6 sm:mb-8 leading-relaxed animate-fade-in-up-delay">
+          <p className="max-w-2xl mx-auto text-center text-sm sm:text-base md:text-lg text-white font-normal mb-6 sm:mb-8 leading-relaxed animate-fade-in-up-delay">
             Unlock your financial future with trusted expertise in crypto, forex, stocks, and more. Experience tailored strategies for sustainable growth.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 animate-fade-in-up-delay-2">
@@ -52,14 +60,14 @@ export default function Home() {
             </a>
             <a
               href="#trading-services"
-              className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-2.5 bg-transparent text-gray-900 font-medium text-base sm:text-lg border-2 border-blue-600 hover:bg-blue-50 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 gap-2 w-full sm:w-auto rounded-lg"
+              className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-2.5 bg-transparent text-white font-medium text-base sm:text-lg border-2 border-white hover:bg-white hover:text-black hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 gap-2 w-full sm:w-auto rounded-lg"
             >
               <span>Learn More</span>
             </a>
           </div>
         </div>
         <div className="mt-4 sm:mt-6 text-center animate-fade-in-up-delay-3">
-          <span className="text-sm sm:text-base md:text-lg text-gray-600">Go further than you&apos;ve ever gone before</span>
+          <span className="text-sm sm:text-base md:text-lg text-white">Go further than you&apos;ve ever gone before</span>
         </div>
       </main>
 
@@ -165,7 +173,7 @@ export default function Home() {
 
       {/* About section */}
       <section id="about" className="z-10 max-w-3xl mt-20 px-4 py-12 rounded-xl bg-white border border-gray-200 shadow-lg text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold text-blue-600 mb-4">Why Metro Market Pro?</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-blue-600 mb-4">Why Platinum Asset Advisor?</h2>
         <p className="text-gray-700 text-lg mb-4">Experience a marketplace like no other. Lightning-fast, ultra-secure, and built for traders and collectors.</p>
         <ul className="flex flex-wrap justify-center gap-6 mt-6 text-left text-gray-600">
           <li className="flex items-center gap-2"><span className="text-green-600">●</span> Instant transactions</li>

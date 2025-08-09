@@ -9,6 +9,7 @@ import WithdrawTab from "./components/WithdrawTab";
 import TransactionHistoryTab from "./components/TransactionHistoryTab";
 import ReferUserTab from "./components/ReferUserTab";
 import KYCTab from "./components/KYCTab";
+import SettingsTab from "./components/SettingsTab";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -31,6 +32,7 @@ const sidebarTabs = [
   { icon: "\u{1F4BC}", label: "Transaction history" },
   { icon: "\u{1F464}\u{2795}", label: "Refer user" },
   { icon: "\u{1F6E1}", label: "KYC Verification" },
+  { icon: "\u{2699}", label: "Settings" },
   { icon: "\u{1F6AA}", label: "Logout", isLogout: true },
 ];
 
@@ -67,7 +69,15 @@ const DashboardPage = () => {
         setRefLink(`${window.location.origin}/signup?ref=${data.user.user_metadata?.username || data.user.id}`);
         // Fetch profile from DB
         const { data: profileData } = await supabase.from('profiles').select('*').eq('id', data.user.id).single();
-        setProfile(profileData);
+        
+        // Load profile image from localStorage with user-specific key
+        const savedImage = localStorage.getItem(`profileImage_${data.user.id}`);
+        const fullProfile = {
+          ...profileData,
+          image: savedImage || profileData?.image || null
+        };
+        
+        setProfile(fullProfile);
         // Fetch stats and deposit history from DB
         if (profileData?.id) {
           const [deposits, withdrawals, investments, referralBonuses] = await Promise.all([
@@ -82,6 +92,27 @@ const DashboardPage = () => {
       }
     });
   }, [router]);
+
+  // Listen for localStorage changes to update profile image
+  useEffect(() => {
+    const handleStorageChange = () => {
+      if (user?.id) {
+        const savedImage = localStorage.getItem(`profileImage_${user.id}`);
+        setProfile(prev => prev ? { ...prev, image: savedImage } : null);
+      }
+    };
+
+    // Listen for storage events (from other tabs/windows)
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also listen for custom events (from same tab)
+    window.addEventListener('profileImageUpdated', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('profileImageUpdated', handleStorageChange);
+    };
+  }, [user?.id]);
 
   // Helper to get available balance from stats (move out of useEffect)
   const getAvailableBalance = () => {
@@ -145,10 +176,6 @@ const DashboardPage = () => {
 
   return (
     <div className="min-h-screen w-full bg-white flex relative font-sans">
-      {/* TradingView grid bg */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="w-full h-full bg-[repeating-linear-gradient(0deg,rgba(0,0,0,0.03),rgba(0,0,0,0.03)_1px,transparent_1px,transparent_40px),repeating-linear-gradient(90deg,rgba(0,0,0,0.03),rgba(0,0,0,0.03)_1px,transparent_1px,transparent_40px)]" />
-      </div>
       {/* Mobile sidebar toggle button */}
       <button
         className="md:hidden fixed top-4 right-4 z-30 bg-white text-gray-700 p-3 rounded-full shadow-lg border border-blue-200 focus:outline-none"
@@ -198,7 +225,26 @@ const DashboardPage = () => {
         {/* Greeting */}
         {profile && (
           <div className="w-full max-w-4xl flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-2">
-            <h2 className="text-lg font-semibold text-gray-700">Hello, {profile.name || profile.username || 'User'}!</h2>
+            <div className="flex items-center gap-3">
+              <h2 className="text-lg font-semibold text-gray-700">Hello, {profile.name || profile.username || 'User'}!</h2>
+              <div 
+                className="w-8 h-8 rounded-full overflow-hidden cursor-pointer hover:ring-2 hover:ring-green-500 transition-all"
+                onClick={() => setActiveTab('Settings')}
+                title="Go to Settings"
+              >
+                {profile.image ? (
+                  <img 
+                    src={profile.image} 
+                    alt="Profile" 
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-sm font-medium">
+                    {(profile.name || profile.username || 'U').charAt(0).toUpperCase()}
+                  </div>
+                )}
+              </div>
+            </div>
            </div>
         )}
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Dashboard</h2>
@@ -223,6 +269,13 @@ const DashboardPage = () => {
         {activeTab === 'Transaction history' && <TransactionHistoryTab />}
         {activeTab === 'Refer user' && <ReferUserTab refLink={refLink} />}
         {activeTab === 'KYC Verification' && <KYCTab />}
+        {activeTab === 'Settings' && (
+          <SettingsTab 
+            user={user} 
+            profile={profile} 
+            onProfileUpdate={setProfile}
+          />
+        )}
       </main>
     </div>
   );

@@ -86,10 +86,6 @@ const SignupPage = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col items-center justify-center relative overflow-hidden font-sans">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="w-full h-full bg-[repeating-linear-gradient(0deg,rgba(0,0,0,0.01),rgba(0,0,0,0.01)_1px,transparent_1px,transparent_40px),repeating-linear-gradient(90deg,rgba(0,0,0,0.01),rgba(0,0,0,0.01)_1px,transparent_1px,transparent_40px)]" />
-      </div>
       <form
         onSubmit={handleSubmit}
         className="z-10 w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col gap-6 mt-24 border border-gray-200"
