@@ -151,7 +151,8 @@ const SettingsTab: React.FC<SettingsTabProps> = ({ user, profile, onProfileUpdat
       alert("Profile updated successfully!");
     } catch (error) {
       console.error("Error updating profile:", error);
-      alert(`Failed to update profile: ${error.message || 'Unknown error'}`);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      alert(`Failed to update profile: ${errorMessage}`);
     } finally {
       setLoading(false);
     }
