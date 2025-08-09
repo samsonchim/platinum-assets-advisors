@@ -10,6 +10,7 @@ import TransactionHistoryTab from "./components/TransactionHistoryTab";
 import ReferUserTab from "./components/ReferUserTab";
 import KYCTab from "./components/KYCTab";
 import SettingsTab from "./components/SettingsTab";
+import SupportChat from "./components/SupportChat";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -277,6 +278,9 @@ const DashboardPage = () => {
           />
         )}
       </main>
+      
+      {/* Support Chat Component */}
+      {user && <SupportChat user={user} />}
     </div>
   );
 }

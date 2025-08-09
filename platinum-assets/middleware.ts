@@ -7,6 +7,18 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function middleware(request: NextRequest) {
+  // Handle admin routes
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    // Allow access to admin login page
+    if (request.nextUrl.pathname === '/admin/login') {
+      return NextResponse.next();
+    }
+    
+    // For other admin routes, we'll handle authentication in the component
+    // since localStorage is not accessible in middleware
+    return NextResponse.next();
+  }
+
   // Only protect dashboard routes
   if (request.nextUrl.pathname.startsWith('/dashboard')) {
     // Try to get the session from the Supabase cookie
@@ -24,5 +36,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: ['/dashboard/:path*', '/admin/:path*'],
 };

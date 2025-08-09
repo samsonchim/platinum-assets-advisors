@@ -72,13 +72,21 @@ export default function Header() {
             </ul>
           </details>
         </div>
-        <a
-          href="/login"
-          className="ml-4 px-4 sm:px-7 py-2 sm:py-2.5 bg-blue-600 text-white font-medium text-sm sm:text-lg shadow border border-blue-600 rounded-[18px_18px_18px_6px] hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center gap-2"
-          style={{ borderRadius: '18px 18px 18px 6px' }}
-        >
-          Login
-        </a>
+        <div className="flex items-center gap-4">
+          <a
+            href="/admin/login"
+            className="px-3 py-1 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+          >
+            Admin
+          </a>
+          <a
+            href="/login"
+            className="px-4 sm:px-7 py-2 sm:py-2.5 bg-blue-600 text-white font-medium text-sm sm:text-lg shadow border border-blue-600 rounded-[18px_18px_18px_6px] hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center gap-2"
+            style={{ borderRadius: '18px 18px 18px 6px' }}
+          >
+            Login
+          </a>
+        </div>
       </nav>
     </header>
   );
