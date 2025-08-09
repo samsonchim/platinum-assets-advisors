@@ -98,7 +98,7 @@ const DashboardPage = () => {
     const handleStorageChange = () => {
       if (user?.id) {
         const savedImage = localStorage.getItem(`profileImage_${user.id}`);
-        setProfile(prev => prev ? { ...prev, image: savedImage } : null);
+        setProfile((prev: any) => prev ? { ...prev, image: savedImage } : null);
       }
     };
 
