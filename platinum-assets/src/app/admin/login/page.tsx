@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const AdminLoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -109,9 +110,9 @@ const AdminLoginPage = () => {
         </button>
 
         <div className="text-center">
-          <a href="/" className="text-gray-600 hover:text-gray-800 text-sm">
+          <Link href="/" className="text-gray-600 hover:text-gray-800 text-sm">
             ← Back to Home
-          </a>
+          </Link>
         </div>
       </form>
 
