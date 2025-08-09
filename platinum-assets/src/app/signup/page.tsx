@@ -24,14 +24,6 @@ const SignupPage = () => {
   const [success, setSuccess] = useState("");
   const router = useRouter();
 
-  React.useEffect(() => {
-    // Get country from IP
-    fetch("https://ipapi.co/json/")
-      .then((res) => res.json())
-      .then((data) => setForm((f) => ({ ...f, country: data.country_name || "" })))
-      .catch(() => {});
-  }, []);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -120,7 +112,14 @@ const SignupPage = () => {
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-gray-700 font-semibold text-sm w-fit">Country</label>
-          <input name="country" value={form.country} readOnly className="px-4 py-2 rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" />
+          <input 
+            name="country" 
+            value={form.country} 
+            onChange={handleChange} 
+            className="px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" 
+            placeholder="Enter your country"
+            required
+          />
         </div>
         <button
           type="submit"
